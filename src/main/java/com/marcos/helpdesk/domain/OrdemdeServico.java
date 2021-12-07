@@ -1,25 +1,29 @@
 package com.marcos.helpdesk.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.marcos.helpdesk.domain.enums.Prioridade;
 import com.marcos.helpdesk.domain.enums.Status;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @Entity
-public class OrdemdeServico {
+public class OrdemdeServico implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Date dataAbertura;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataAbertura = LocalDate.now();
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataFechemento;
 
     private Prioridade prioridade;
@@ -30,8 +34,12 @@ public class OrdemdeServico {
 
     private String observacoes;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "tecnico_id")
     private  Tecnico tecnico;
 
 
