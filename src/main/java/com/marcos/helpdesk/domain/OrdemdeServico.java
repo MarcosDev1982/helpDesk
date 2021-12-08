@@ -42,5 +42,13 @@ public class OrdemdeServico implements Serializable {
     @JoinColumn(name = "tecnico_id")
     private  Tecnico tecnico;
 
-
+    public OrdemdeServico(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Cliente cliente, Tecnico tecnico) {
+        this.id = id;
+        this.prioridade = prioridade;
+        this.status = status;
+        this.titulo = titulo;
+        this.observacoes = observacoes;
+        this.cliente = cliente;
+        this.tecnico = tecnico;
+    }
 }
