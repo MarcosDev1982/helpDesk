@@ -1,5 +1,6 @@
 package com.marcos.helpdesk.resources;
 
+import com.marcos.helpdesk.domain.DTO.TecnicoDTO;
 import com.marcos.helpdesk.domain.Tecnico;
 import com.marcos.helpdesk.repositories.TecnicoRepositories;
 import com.marcos.helpdesk.services.TecnicoService;
@@ -18,9 +19,9 @@ public class TecnicoResource {
    private TecnicoService tecnicoService;
 
      @GetMapping(value = "/{id}")
-     public ResponseEntity<Tecnico> findByID(@PathVariable Integer id){
-              Tecnico obj = tecnicoService.findById(id);
-        return ResponseEntity.ok().body(obj);
+     public ResponseEntity<TecnicoDTO> findByID(@PathVariable Integer id){
+         Tecnico obj = tecnicoService.findById(id);
+        return ResponseEntity.ok().body(new TecnicoDTO(obj));
      }
 
 
