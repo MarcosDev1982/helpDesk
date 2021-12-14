@@ -1,5 +1,6 @@
 package com.marcos.helpdesk.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcos.helpdesk.domain.enums.Perfil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class Cliente extends Pessoa  {
 
     private static final long serialVersionUID = 1L;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<OrdemdeServico> ordemdeServicos = new ArrayList<>();
 
